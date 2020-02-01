@@ -18,6 +18,7 @@ class App extends Component {
   //   this.setState({ users: res.data, loading: false })
   // }
 
+  // SEARCH USERS FROM GITHUB API
   searchUsers = async text => {
     this.setState({ loading: true })
     const res = await axios.get(
@@ -26,15 +27,24 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false })
   }
 
+  // CLEAR USERS LIST RESULTS
+  clearUsers = () => this.setState({ users: [], loading: false })
+
   render() {
+    const { users, loading } = this.state
+
     return (
       <div className="App">
         <nav className="navbar bg-primary">
           <Navbar />
         </nav>
         <div className="container">
-          <Search searchUsers={this.searchUsers}></Search>
-          <Users loading={this.state.loading} users={this.state.users} />
+          <Search
+            searchUsers={this.searchUsers}
+            clearUsers={this.clearUsers}
+            showClear={!!users.length}
+          ></Search>
+          <Users loading={loading} users={users} />
         </div>
       </div>
     )
