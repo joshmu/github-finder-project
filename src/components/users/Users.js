@@ -11,7 +11,7 @@ const Users = () => {
     return <Spinner></Spinner>
   } else {
     return (
-      <div style={userStyle}>
+      <div style={userStyle} className="grid-4">
         {users.map(user => (
           <UserItem key={user.id} user={user} />
         ))}
@@ -22,7 +22,7 @@ const Users = () => {
 
 const userStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  // gridTemplateColumns: 'repeat(3, 1fr)', // bringing this in via class instead
   gridGap: '1rem'
 }
 
